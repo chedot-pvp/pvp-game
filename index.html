@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>PvP Profile</title>
+
+  <!-- Telegram API -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(160deg, #1e1e2f, #2c2c44);
+      color: white;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 360px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #2a2a40;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,.6);
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #444;
+      margin: 0 auto 10px;
+    }
+
+    .stat {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #ff9800;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="avatar"></div>
+    <h2 id="name">Игрок</h2>
+
+    <div class="stat">💪 Сила: <span id="str"></span></div>
+    <div class="stat">⚡ Ловкость: <span id="agi"></span></div>
+    <div class="stat">❤️ Выносливость: <span id="sta"></span></div>
+    <div class="stat">💰 Монеты: <span id="coins"></span></div>
+
+    <button onclick="Telegram.WebApp.close()">Закрыть</button>
+  </div>
+
+  <script>
+    const tg = Telegram.WebApp;
+    tg.ready();
+
+    // временные данные (пока без сервера)
+    document.getElementById("name").innerText = tg.initDataUnsafe.user.first_name;
+    document.getElementById("str").innerText = 5;
+    document.getElementById("agi").innerText = 3;
+    document.getElementById("sta").innerText = 4;
+    document.getElementById("coins").innerText = 120;
+  </script>
+</body>
+</html>
