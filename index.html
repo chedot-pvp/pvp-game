@@ -73,21 +73,50 @@
     const tg = Telegram.WebApp;
     tg.ready();
 
-    // временные данные (пока без сервера)
-    document.getElementById("name").innerText = tg.initDataUnsafe.user.first_name;
-    document.getElementById("str").innerText = 5;
-    document.getElementById("agi").innerText = 3;
-    document.getElementById("sta").innerText = 4;
-    document.getElementById("coins").innerText = 120;
+  const userId = tg.initDataUnsafe.user.id;
 
-// --- ЗАГЛУШКИ ---
-  function startFight() {
-    alert("Бой будет здесь");
-  }
+function loadProfile() {
+  fetch("http://127.0.0.1:8000/profile", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({telegram_id: userId})
+  })
+  .then(r => r.json())
+  .then(d => {
+    str.innerText = d.strength;
+    agi.innerText = d.agility;
+    sta.innerText = d.stamina;
+    coins.innerText = d.coins;
+  });
+}
 
-  function upgrade(stat) {
-    alert("Прокачка: " + stat);
-  }
-  </script>
+function startFight() {
+  fetch("http://127.0.0.1:8000/fight", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({telegram_id: userId})
+  })
+  .then(r => r.json())
+  .then(d => {
+    if (d.status === "wait") {
+      alert("Ожидание соперника...");
+    } else {
+      alert("Бой окончен!\n" + d.log.join("\n"));
+      loadProfile();
+    }
+  });
+}
+
+function upgrade(stat) {
+  fetch("http://127.0.0.1:8000/upgrade", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({telegram_id: userId, stat: stat})
+  })
+  .then(() => loadProfile());
+}
+
+loadProfile();
+</script>
 </body>
 </html>
