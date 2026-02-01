@@ -60,6 +60,12 @@
     <div class="stat">❤️ Выносливость: <span id="sta"></span></div>
     <div class="stat">💰 Монеты: <span id="coins"></span></div>
 
+<!-- КНОПКИ ИГРЫ -->
+  <button onclick="startFight()">🗡 В бой</button>
+  <button onclick="upgrade('strength')">💪 Сила +</button>
+  <button onclick="upgrade('agility')">⚡ Ловкость +</button>
+  <button onclick="upgrade('stamina')">❤️ Выносливость +</button>
+
     <button onclick="Telegram.WebApp.close()">Закрыть</button>
   </div>
 
@@ -73,6 +79,15 @@
     document.getElementById("agi").innerText = 3;
     document.getElementById("sta").innerText = 4;
     document.getElementById("coins").innerText = 120;
+
+// --- ЗАГЛУШКИ ---
+  function startFight() {
+    alert("Бой будет здесь");
+  }
+
+  function upgrade(stat) {
+    alert("Прокачка: " + stat);
+  }
   </script>
 </body>
 </html>
