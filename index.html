@@ -76,7 +76,7 @@
   const userId = tg.initDataUnsafe.user.id;
 
 function loadProfile() {
-  fetch("http://127.0.0.1:8000/profile", {
+  fetch("https://89.111.134.240:8000/profile", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({telegram_id: userId})
@@ -91,7 +91,7 @@ function loadProfile() {
 }
 
 function startFight() {
-  fetch("http://127.0.0.1:8000/fight", {
+  fetch("https://89.111.134.240:8000/fight", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({telegram_id: userId})
@@ -108,7 +108,7 @@ function startFight() {
 }
 
 function upgrade(stat) {
-  fetch("http://127.0.0.1:8000/upgrade", {
+  fetch("https://89.111.134.240:8000/upgrade", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({telegram_id: userId, stat: stat})
