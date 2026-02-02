@@ -168,7 +168,7 @@ async def open_game(msg: types.Message):
         types.InlineKeyboardButton(
             text="🎮 Открыть игру",
             web_app=types.WebAppInfo(
-                url="https://chedot-pvp.github.io/pvp-game/"
+                url="https://game.chedot.com/v2/"
             )
         )
     )
@@ -178,3 +178,4 @@ async def open_game(msg: types.Message):
 if __name__ == "__main__":
 
     executor.start_polling(dp)
+
